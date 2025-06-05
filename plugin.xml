@@ -1,14 +1,31 @@
-<plugin id="cordova-plugin-ios-recording-guard" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="cordova-plugin-ios-recording-guard"
+        version="1.0.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0">
+
   <name>ScreenRecordingGuard</name>
   <description>Detects and hides UI if screen recording is active on iOS</description>
   <license>MIT</license>
   <author email="openai@example.com">OpenAI Plugin Author</author>
+
+  <engines>
+    <engine name="cordova" version=">=7.1.0"/>
+    <engine name="cordova-ios" version=">=4.3.0"/>
+  </engines>
 
   <js-module src="www/recordingGuard.js" name="ScreenRecordingGuard">
     <clobbers target="ScreenRecordingGuard" />
   </js-module>
 
   <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ScreenRecordingGuard">
+        <param name="ios-package" value="ScreenRecordingGuard"/>
+        <param name="onload" value="true"/>
+      </feature>
+    </config-file>
     <source-file src="src/ios/ScreenRecordingGuard.m" />
+    <!-- Optional -->
+    <!-- <header-file src="src/ios/ScreenRecordingGuard.h" /> -->
   </platform>
+
 </plugin>
