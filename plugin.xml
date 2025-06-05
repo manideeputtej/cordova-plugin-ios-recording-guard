@@ -5,7 +5,7 @@
   <name>ScreenRecordingGuard</name>
   <description>Detects and hides UI if screen recording is active on iOS</description>
   <license>MIT</license>
-  <author email="openai@example.com">OpenAI Plugin Author</author>
+  <author email="manideep.yadlapalli@gmail.com">Manideep Yadlapalli</author>
 
   <engines>
     <engine name="cordova" version=">=7.1.0"/>
