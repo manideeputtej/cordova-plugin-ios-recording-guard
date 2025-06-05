@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-ios-recording-guard",
+  "version": "1.0.0",
+  "description": "cordova-plugin-ios-recording-guard",
+  "cordova": {
+    "id": "cordova-plugin-ios-recording-guard",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manideeputtej/cordova-plugin-ios-recording-guard.git"
+  },
+  "author": "Manideep Yadlapalli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manideeputtej/cordova-plugin-ios-recording-guard.git/issues"
+  },
+  "homepage": "https://github.com/manideeputtej/cordova-plugin-ios-recording-guard",
+  "keywords": [
+    "cordova"
+  ]
+}
