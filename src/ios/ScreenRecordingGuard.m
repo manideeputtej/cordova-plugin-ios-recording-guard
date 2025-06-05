@@ -13,25 +13,26 @@
         isCaptured = [UIScreen mainScreen].isCaptured;
     }
 
-    if (isCaptured) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-            UIView *blocker = [[UIView alloc] initWithFrame:keyWindow.bounds];
-            blocker.backgroundColor = [UIColor blackColor];
-            blocker.tag = 99999;
-            blocker.alpha = 1.0;
-            [keyWindow addSubview:blocker];
-        });
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-            UIView *blocker = [keyWindow viewWithTag:99999];
-            if (blocker != nil) {
-                [blocker removeFromSuperview];
-            }
-        });
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *kewWindow = [UIApplication sharedApplication].keyWindow;
 
+        if (isCaptured) {
+            if (![keyWindow viewWithTag:99999]) {
+                UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+                blurView.frame = keyWindow.bounds;
+                blurView.tag = 99999;
+                blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+                [keyWindow addSubview:blurView];
+            }
+        }   else {
+            UIView *existing = [keyWindow viewWithTag:99999];
+            if (existing) {
+                [existiing removeFromSuperview];
+            }
+        }
+    });
+    
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isCaptured];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
