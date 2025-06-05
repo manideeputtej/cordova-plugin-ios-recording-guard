@@ -14,10 +14,12 @@
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIWindow *kewWindow = [UIApplication sharedApplication].keyWindow;
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
 
         if (isCaptured) {
+            // Check if blur view already exists
             if (![keyWindow viewWithTag:99999]) {
+                // Create a blur effect
                 UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
                 UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
                 blurView.frame = keyWindow.bounds;
@@ -25,14 +27,15 @@
                 blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 [keyWindow addSubview:blurView];
             }
-        }   else {
+        } else {
+            // Remove blur view if present
             UIView *existing = [keyWindow viewWithTag:99999];
             if (existing) {
-                [existiing removeFromSuperview];
+                [existing removeFromSuperview];
             }
         }
     });
-    
+
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isCaptured];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
